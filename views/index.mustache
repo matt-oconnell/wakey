@@ -1,0 +1,101 @@
+<html>
+<head>
+  <style>
+  .col {
+    float: left;
+    width: 33.33%;
+    border-left: 1px solid black;
+    box-sizing: border-box;
+    min-height: 100%;
+    padding: 0 20px;
+  }
+  .right {
+    float: right;
+  }
+  .waves .arrow-condition-1 {
+    color: green
+  }
+  .waves .arrow-condition-2 {
+    color: blue
+  }
+  .waves .arrow-condition-3 {
+    color: red
+  }
+  .waves .arrow {
+    display: inline-block
+  }
+  .arrow-bold {
+    font-weight: bold;
+  }
+  .arrow-E { transform: rotate(180deg) }
+  .arrow-ESE { transform: rotate(202.5deg) }
+  .arrow-SE { transform: rotate(225deg) }
+  .arrow-SSE { transform: rotate(247.5deg) }
+  .arrow-S { transform: rotate(270deg) }
+  .arrow-SSW { transform: rotate(292.5deg) }
+  .arrow-SW { transform: rotate(315deg) }
+  .arrow-WSW { transform: rotate(337.5deg) }
+  .arrow-W { transform: rotate(0deg) }
+  .arrow-WNW { transform: rotate(22.5deg) }
+  .arrow-NW { transform: rotate(45deg) }
+  .arrow-NNW { transform: rotate(67.5deg) }
+  .arrow-N { transform: rotate(90deg) }
+  .arrow-NNE { transform: rotate(112.5deg) }
+  .arrow-NE { transform: rotate(135deg) }
+  .arrow-ENE { transform: rotate(157.5.5deg) }
+  .waves p, .waves h5 {
+    margin: 2px
+  }
+  .waves p:nth-child(odd) {
+    background: #eee;
+  }
+  .waves h5 {
+    border-top: 1px solid black
+  }
+  .event {
+    border-bottom: 1px solid black
+  }
+  .weather p {
+    font-size: 20px;
+  }
+  </style>
+</head>
+<body>
+  <div class="col">
+    <div class="calendar">
+      <h1>Calendar</h1>
+      {{#calendar}}
+      <div class="event">
+        <p><strong>{{name}}</strong></p>
+        <p>{{start}} - {{end}}</p>
+      </div>
+      {{/calendar}}  
+    </div>
+  </div>
+  <div class="col">
+    <div class="weather">
+      <h1>Weather</h1>
+      <p>Low: {{weather.today.low}}&deg; High: {{weather.today.high}}&deg;</p>
+      <p>Type: {{weather.today.type}}</p>
+      <p>Chance of Rain: {{weather.today.chanceOfRain}}%</p>
+    </div>
+    <div class="parking">
+      <h1>Parking</h1>
+      {{#parking}}
+      <p>{{text}}</p>
+      {{/parking}}
+    </div>
+  </div>
+  <div class="col">
+    <div class="waves">
+      <h1>Waves</h1>
+      {{#waves}}
+        <h5>{{day}}</h5>
+        {{#data}}
+          <p>{{hour}} <span class="arrow arrow-bold arrow-{{windDirection}} arrow-condition-{{cond}}">></span> {{wind}} <span class="right">{{swellDirection}} <span class="arrow arrow-{{swellDirection}}">></span> <strong>{{swellStat}}</strong></span></p>
+        {{/data}}
+      {{/waves}}
+    </div>
+  </div>
+</body>
+<html>
