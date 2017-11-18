@@ -1,10 +1,25 @@
 const weatherjs = require('weather-js')
 
 module.exports = {
-  weather: (res) => {
-    weatherjs.find({search: 'Brooklyn, NY', degreeType: 'F'}, (err, result) => {
-      if (err) { throw new Error(err) }
-      res.send(JSON.stringify(result, null, 2))
-    });
+  weather: async () => {
+    return new Promise((res, rej) => {
+      weatherjs.find({
+        search: 'Brooklyn, NY',
+        degreeType: 'F'
+      }, (err, data) => {
+        if (err) rej(err)
+        const yesterday = data[0].forecast[0]
+        const today = data[0].forecast[1]
+        const weatherResponse = {
+          today: {
+            low: today.low,
+            high: today.high,
+            type: today.skytextday,
+            chanceOfRain: today.precip
+          }
+        }
+        res(weatherResponse)
+      })
+    }) 
   }
 }

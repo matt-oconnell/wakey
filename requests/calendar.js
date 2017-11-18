@@ -3,7 +3,7 @@ const keys = require('./../.keys.js')
 const moment = require('moment')
 
 module.exports = {
-  calendar: async (res) => {
+  calendar: async () => {
     const client = new Cronofy({
       access_token: keys.calendar,
     })
@@ -15,7 +15,9 @@ module.exports = {
     }
     const response = await client.readEvents(options)
     const mappedEvents = mapEvents(response.events)
-    res.send(mappedEvents)
+    console.log(mappedEvents);
+    
+    return mappedEvents
   }
 }
 
