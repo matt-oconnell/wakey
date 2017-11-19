@@ -21,7 +21,8 @@ module.exports = {
                   ...day,
                   windDirection: day.wind.trim().split(' ')[0],
                   swellDirection: day.swell1.trim().split(' ')[0],
-                  swellStat: day.swell1.trim().split(' ').slice(1).join(' ')
+                  swellStat: day.swell1.trim().split(' ').slice(1).join(' '),
+                  hasSize: +day.swell1.trim().split(' ').slice(1)[1] >= 3.5,
                 }
               })
             }

@@ -1,10 +1,12 @@
 const express = require('express')
 const mustacheExpress = require('mustache-express')
 const path = require('path')
+const moment = require('moment-timezone')
 const { waves } = require('./requests/waves.js')
 const { weather } = require('./requests/weather.js')
 const { parking } = require('./requests/parking.js')
 const { calendar } = require('./requests/calendar.js')
+moment.tz.setDefault('America/New_York')
 
 const app = express()
 app.engine('mustache', mustacheExpress());
@@ -25,7 +27,11 @@ app.get('/', asyncMiddleware(async (req, res, next) => {
     calendar: calendarResp,
     weather: weatherResp,
     parking: parkingResp,
-    waves: wavesResp
+    waves: wavesResp,
+    summary: {
+      day: moment().format('dddd'),
+      date: moment().format('MMMM Do YYYY'),
+    }
   })
 }))
 
@@ -41,4 +47,4 @@ app.get('/d', asyncMiddleware(async (req, res, next) => {
   })
 }))
 
-app.listen(3000, () => console.log('http://localhost:3000/'))
+app.listen(process.env.PORT || 5000)

@@ -1,32 +1,52 @@
 const Cronofy = require('cronofy')
-const keys = require('./../.keys.js')
-const moment = require('moment')
+const moment = require('moment-timezone')
+moment.tz.setDefault('America/New_York')
 
 module.exports = {
   calendar: async () => {
+    let access_token
+    try {
+      access_token = require('./../.keys.js') && require('./../.keys.js').calendar;
+    } catch(e) {
+      access_token = process.env.CALENDAR_KEY
+    }
     const client = new Cronofy({
-      access_token: keys.calendar,
+      access_token,
     })
     const options = {
       tzid: 'Etc/UTC',
       from: moment().format('YYYY-MM-DD'),
-      to: moment().add(1, 'days').format('YYYY-MM-DD'),
+      to: moment().add(2, 'days').format('YYYY-MM-DD'),
       localized_times: true,
     }
     const response = await client.readEvents(options)
-    const mappedEvents = mapEvents(response.events)
-    console.log(mappedEvents);
-    
-    return mappedEvents
+    return mapEvents(response.events)
   }
 }
 
 function mapEvents(events) {
-  return events.map(event => {
-    return {
+  const mappedEvents = {
+    today: {
+      events: [],
+    },
+    tomorrow: {
+      events: [],
+    }
+  }
+  events.forEach(event => {
+    const mappedEvent = {
       name: event.summary,
       start: moment(event.start.time).format('hh:mm a'),
       end: moment(event.end.time).format('hh:mm a'),
     }
+    if (moment().isSame(event.start.time, 'd')) {
+      mappedEvents.today.events.push(mappedEvent)
+    }
+    else {
+      mappedEvents.tomorrow.events.push(mappedEvent)
+    }
   })
+  mappedEvents.today.isEmpty = !mappedEvents.today.events.length
+  mappedEvents.tomorrow.isEmpty = !mappedEvents.tomorrow.events.length
+  return mappedEvents
 }
