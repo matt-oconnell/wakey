@@ -29,5 +29,5 @@ xte 'key F11' -x:0
 #!/bin/sh
 
 vcgencmd display_power 0
-pkill -HUP chromium-browser
+pkill -HUP chromium
 ```
