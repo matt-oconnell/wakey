@@ -2,7 +2,7 @@
 
 ## Running on Raspberry Pi 3:
 
-Edit power save mode: `xset dpms 0 0 7200`
+Edit power save mode: `xset dpms 0 0 7200; xset s 0 0`
 
 Install Chromium: `sudo apt-get install chromium-browser`
 
