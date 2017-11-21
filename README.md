@@ -3,8 +3,11 @@
 ## Running on Raspberry Pi 3:
 
 Edit power save mode: `xset dpms 0 0 7200`
+
 Install Chromium: `sudo apt-get install chromium-browser`
+
 Install xautomation: `sudo apt-get install xautomation`
+
 Configure crontab to run on/off scripts
 
 
