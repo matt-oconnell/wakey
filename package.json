@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --ignore dist/ -x 'node-sass -w src/styles -o dist/styles'"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +19,8 @@
     "vue": "^2.5.6",
     "weather-js": "^2.0.0",
     "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2"
   }
 }

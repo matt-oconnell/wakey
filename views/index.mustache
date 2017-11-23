@@ -1,153 +1,60 @@
 <html>
 <head>
-  <style>
-  html {
-    color: white;
-    font-family: sans-serif;
-    background: #108dc7;
-  }
-  body {
-    overflow: hidden;
-  }
-  .col {
-    float: left;
-    width: 33.33%;
-    box-sizing: border-box;
-    min-height: 100%;
-    padding: 0 20px;
-  }
-  .right {
-    float: right;
-  }
-  .waves .arrow-condition-1 {
-    color: green
-  }
-  .waves .arrow-condition-2 {
-    color: blue
-  }
-  .waves .arrow-condition-3 {
-    color: red
-  }
-  .waves .arrow {
-    display: inline-block
-  }
-  .waves h5 {
-    border-top: 1px solid white;
-    margin: 4px 0;
-  }
-  .arrow-bold {
-    font-weight: bold;
-  }
-  .arrow-E { transform: rotate(180deg) }
-  .arrow-ESE { transform: rotate(202.5deg) }
-  .arrow-SE { transform: rotate(225deg) }
-  .arrow-SSE { transform: rotate(247.5deg) }
-  .arrow-S { transform: rotate(270deg) }
-  .arrow-SSW { transform: rotate(292.5deg) }
-  .arrow-SW { transform: rotate(315deg) }
-  .arrow-WSW { transform: rotate(337.5deg) }
-  .arrow-W { transform: rotate(0deg) }
-  .arrow-WNW { transform: rotate(22.5deg) }
-  .arrow-NW { transform: rotate(45deg) }
-  .arrow-NNW { transform: rotate(67.5deg) }
-  .arrow-N { transform: rotate(90deg) }
-  .arrow-NNE { transform: rotate(112.5deg) }
-  .arrow-NE { transform: rotate(135deg) }
-  .arrow-ENE { transform: rotate(157.5.5deg) }
-  .waves p {
-    margin: 2px 0;
-  }
-  .waves p:last-child {
-    margin-bottom: 10px;
-  }
-  .waves p.cond-1 {
-    background: linear-gradient(to right, #eee0, #11998e, #38ef7d, #3330);
-  }
-  .waves .big {
-    color: #1e4b47;
-  }
-  .event {
-    border-bottom: 1px solid white;
-  }
-  .weather {
-    text-align: center;
-  }
-  .weather p {
-    font-size: 20px;
-  }
-  .weather .temp {
-    font-size: 25px;
-    margin-bottom: 10px;
-  }
-  .weather .yesterday {
-    font-size: 13px;
-    margin-top: 0;
-  }
-  .parking {
-    background: white;
-    color: #108dc7;
-    padding: 1px 20px;
-    font-size: 25px;
-    border-radius: 10px;
-    margin-top: 50px;
-  }
-  .summary {
-    text-align: center;
-    font-weight: bold;
-    padding: 20px 0;
-  }
-  .summary p {
-    margin: 0;
-  }
-  .summary .day {
-    font-size: 45px;
-  }
-  .summary .date {
-    font-size: 35px;
-  }
-  .tomorrow {
-    margin-top: 40px;
-  }
-  </style>
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
   <div class="col">
+    <!-- Calendar -->
     <div class="calendar">
-      <h1>Calendar</h1>
-      <h2>Today</h2>
+      <h1>Today</h1>
       {{#calendar.today.isEmpty}}
       <h2>Calendar is totally free today</h2>
       {{/calendar.today.isEmpty}}
       {{#calendar.today.events}}
       <div class="event">
-        <p><strong>{{name}}</strong></p>
-        <p>{{start}} - {{end}}</p>
+        <h2><strong>{{name}}</strong></h2>
+        <h3>{{start}} - {{end}}</h3>
       </div>
       {{/calendar.today.events}}
-      <h2 class="tomorrow">Tomorrow</h2>
+      <h1 class="tomorrow">Tomorrow</h1>
       {{#calendar.tomorrow.isEmpty}}
-      <h2>Calendar is totally free tomorrow</h2>
+      <h1>Calendar is totally free tomorrow</h1>
       {{/calendar.tomorrow.isEmpty}}
       {{#calendar.tomorrow.events}}
       <div class="event">
-        <p><strong>{{name}}</strong></p>
-        <p>{{start}} - {{end}}</p>
+        <h2><strong>{{name}}</strong></h2>
+        <h3>{{start}} - {{end}}</h3>
       </div>
       {{/calendar.tomorrow.events}}  
     </div>
+    <!-- YOGA -->
+    <div class="yoga">
+      {{#yoga}}
+      <h1>Yoga</h1>
+      {{/yoga}}
+      {{#yoga}}
+      <h2>{{class}}</h2>
+      <div class="event">
+        <p><strong>{{time}}</strong></p>
+        <p>{{instructor}}</p>
+      </div>
+      {{/yoga}}
+    </div>
   </div>
   <div class="col">
+    <!-- Summary -->
     <div class="summary">
       <p class="day">{{summary.day}}</p>
       <p class="date">{{summary.date}}</p>
     </div>
+    <!-- Weather -->
     <div class="weather">
-      <h1>Weather</h1>
-      <p class="temp">{{weather.today.low}}&deg; -&nbsp; {{weather.today.high}}&deg;</p>
-      <p class="yesterday">Yesterday was: {{weather.yesterday.low}}&deg; - {{weather.yesterday.high}}&deg;</p>
+      <h1 class="temp">{{weather.today.low}}&deg; -&nbsp; {{weather.today.high}}&deg;</h1>
+      <h1 class="yesterday">Yesterday: {{weather.yesterday.low}}&deg; - {{weather.yesterday.high}}&deg;</h1>
       <!-- <p><i>{{weather.today.desc}}</i></p> -->
       <p>Rain: {{weather.today.chanceOfRain}}%</p>
     </div>
+    <!-- Parking -->
     <div class="parking">
       {{#parking}}
       <p>{{text}}</p>
@@ -155,6 +62,7 @@
     </div>
   </div>
   <div class="col">
+    <!-- Waves -->
     <div class="waves">
       <h1>Waves</h1>
       {{#waves}}

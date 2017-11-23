@@ -1,0 +1,130 @@
+html {
+  color: white;
+  font-family: sans-serif;
+  background: #108dc7; }
+
+body {
+  overflow: hidden;
+  font-size: 17px; }
+
+.col {
+  float: left;
+  width: 33.33%;
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 0 20px; }
+
+.right {
+  float: right; }
+
+.calendar .tomorrow {
+  margin-top: 40px; }
+
+.calendar .event {
+  border-bottom: 1px solid white; }
+
+h1 {
+  color: #ffedbc; }
+
+.summary {
+  text-align: center;
+  font-weight: bold;
+  padding: 20px 0; }
+  .summary p {
+    margin: 0; }
+  .summary .day {
+    font-size: 55px; }
+  .summary .date {
+    font-size: 45px; }
+
+.weather {
+  text-align: center; }
+  .weather .temp {
+    margin-bottom: 10px; }
+  .weather .yesterday {
+    margin-top: 0; }
+
+.parking {
+  background: white;
+  color: #108dc7;
+  padding: 1px 20px;
+  font-size: 30px;
+  border-radius: 10px;
+  margin-top: 50px; }
+
+.waves p {
+  margin: 2px 0; }
+  .waves p.cond-1 {
+    background: linear-gradient(to right, #eee0, #11998e, #38ef7d); }
+  .waves p:last-child {
+    margin-bottom: 10px; }
+
+.waves h5 {
+  border-top: 1px solid white;
+  margin: 4px 0; }
+
+.waves .arrow-condition-1 {
+  color: green; }
+
+.waves .arrow-condition-2 {
+  color: blue; }
+
+.waves .arrow-condition-3 {
+  color: red; }
+
+.waves .arrow {
+  display: inline-block; }
+
+.waves .arrow-bold {
+  font-weight: bold; }
+
+.waves .arrow-E {
+  transform: rotate(180deg); }
+
+.waves .arrow-ESE {
+  transform: rotate(202.5deg); }
+
+.waves .arrow-SE {
+  transform: rotate(225deg); }
+
+.waves .arrow-SSE {
+  transform: rotate(247.5deg); }
+
+.waves .arrow-S {
+  transform: rotate(270deg); }
+
+.waves .arrow-SSW {
+  transform: rotate(292.5deg); }
+
+.waves .arrow-SW {
+  transform: rotate(315deg); }
+
+.waves .arrow-WSW {
+  transform: rotate(337.5deg); }
+
+.waves .arrow-W {
+  transform: rotate(0deg); }
+
+.waves .arrow-WNW {
+  transform: rotate(22.5deg); }
+
+.waves .arrow-NW {
+  transform: rotate(45deg); }
+
+.waves .arrow-NNW {
+  transform: rotate(67.5deg); }
+
+.waves .arrow-N {
+  transform: rotate(90deg); }
+
+.waves .arrow-NNE {
+  transform: rotate(112.5deg); }
+
+.waves .arrow-NE {
+  transform: rotate(135deg); }
+
+.waves .arrow-ENE {
+  transform: rotate(157.5deg); }
+
+.waves .big {
+  color: #1e4b47; }

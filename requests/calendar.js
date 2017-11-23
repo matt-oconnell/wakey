@@ -39,11 +39,13 @@ function mapEvents(events) {
       start: moment(event.start.time).format('hh:mm a'),
       end: moment(event.end.time).format('hh:mm a'),
     }
-    if (moment().isSame(event.start.time, 'd')) {
+    if (moment().isSame(event.start.time, 'd') && !/Stand/i.test(event.summary)) {
       mappedEvents.today.events.push(mappedEvent)
     }
     else {
-      mappedEvents.tomorrow.events.push(mappedEvent)
+      if (!/Stand/i.test(event.summary)) {
+        mappedEvents.tomorrow.events.push(mappedEvent)
+      }
     }
   })
   mappedEvents.today.isEmpty = !mappedEvents.today.events.length

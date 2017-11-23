@@ -6,24 +6,27 @@ const { waves } = require('./requests/waves.js')
 const { weather } = require('./requests/weather.js')
 const { parking } = require('./requests/parking.js')
 const { calendar } = require('./requests/calendar.js')
+const { yoga } = require('./requests/yoga.js')
 moment.tz.setDefault('America/New_York')
+
 
 const app = express()
 app.engine('mustache', mustacheExpress());
 
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'dist')))
 
 const asyncMiddleware = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next)
 }
 
 app.get('/', asyncMiddleware(async (req, res, next) => {
-  const [calendarResp, weatherResp, parkingResp, wavesResp] = await Promise.all([
-    calendar(), weather(), parking(), waves()
+  const [yogaResp, calendarResp, weatherResp, parkingResp, wavesResp] = await Promise.all([
+    yoga(), calendar(), weather(), parking(), waves()
   ])
   res.render('index', {
+    yoga: yogaResp,
     calendar: calendarResp,
     weather: weatherResp,
     parking: parkingResp,
@@ -36,10 +39,11 @@ app.get('/', asyncMiddleware(async (req, res, next) => {
 }))
 
 app.get('/d', asyncMiddleware(async (req, res, next) => {
-  const [calendarResp, weatherResp, parkingResp, wavesResp] = await Promise.all([
-    calendar(), weather(), parking(), waves()
+  const [yogaResp, calendarResp, weatherResp, parkingResp, wavesResp] = await Promise.all([
+    yoga(), calendar(), weather(), parking(), waves()
   ])
   res.send({
+    yoga: yogaResp,
     calendar: calendarResp,
     weather: weatherResp,
     parking: parkingResp,
