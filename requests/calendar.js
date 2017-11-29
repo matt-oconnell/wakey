@@ -5,11 +5,7 @@ moment.tz.setDefault('America/New_York')
 module.exports = {
   calendar: async () => {
     let access_token
-    try {
-      access_token = require('./../.keys.js') && require('./../.keys.js').calendar;
-    } catch(e) {
-      access_token = process.env.CALENDAR_KEY
-    }
+    access_token = process.env.CALENDAR_KEY
     const client = new Cronofy({
       access_token,
     })

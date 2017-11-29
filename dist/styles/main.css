@@ -1,11 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
 html {
   color: white;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
   background: #108dc7; }
 
 body {
   overflow: hidden;
   font-size: 17px; }
+
+h1 {
+  color: #e49b80; }
 
 .col {
   float: left;
@@ -22,9 +26,6 @@ body {
 
 .calendar .event {
   border-bottom: 1px solid white; }
-
-h1 {
-  color: #ffedbc; }
 
 .summary {
   text-align: center;

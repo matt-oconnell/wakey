@@ -9,6 +9,8 @@ const { calendar } = require('./requests/calendar.js')
 const { yoga } = require('./requests/yoga.js')
 moment.tz.setDefault('America/New_York')
 
+var Redis = require('ioredis')
+var redis = new Redis(process.env.REDIS_URL)
 
 const app = express()
 app.engine('mustache', mustacheExpress());
@@ -22,10 +24,18 @@ const asyncMiddleware = (fn) => (req, res, next) => {
 }
 
 app.get('/', asyncMiddleware(async (req, res, next) => {
+  const startOfDayTimestamp = moment().startOf('day').unix()
+
+  const cachedData = await redis.get(`${startOfDayTimestamp}`)
+  if (cachedData) {
+    res.render('index', JSON.parse(cachedData))
+    return
+  }
+ 
   const [yogaResp, calendarResp, weatherResp, parkingResp, wavesResp] = await Promise.all([
     yoga(), calendar(), weather(), parking(), waves()
   ])
-  res.render('index', {
+  const collectedResponses = {
     yoga: yogaResp,
     calendar: calendarResp,
     weather: weatherResp,
@@ -35,10 +45,12 @@ app.get('/', asyncMiddleware(async (req, res, next) => {
       day: moment().format('dddd'),
       date: moment().format('MMMM Do YYYY'),
     }
-  })
+  };
+  res.render('index', collectedResponses)
+  redis.set(`${startOfDayTimestamp}`, JSON.stringify(collectedResponses))
 }))
 
-app.get('/d', asyncMiddleware(async (req, res, next) => {
+app.get('/debug', asyncMiddleware(async (req, res, next) => {
   const [yogaResp, calendarResp, weatherResp, parkingResp, wavesResp] = await Promise.all([
     yoga(), calendar(), weather(), parking(), waves()
   ])
