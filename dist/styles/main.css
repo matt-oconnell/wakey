@@ -18,6 +18,14 @@ h1 {
   min-height: 100%;
   padding: 0 20px; }
 
+@media screen and (max-width: 700px) {
+  * {
+    font-size: 12px !important; }
+  .col {
+    float: none;
+    width: 100%;
+    min-height: 0; } }
+
 .right {
   float: right; }
 

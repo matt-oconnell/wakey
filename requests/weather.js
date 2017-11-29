@@ -3,8 +3,8 @@ const axios = require('axios')
 
 module.exports = {
   weather: async () => {
-    const today = await axios.get('http://api.wunderground.com/api/a657cb9c1419658e/forecast10day/q/NY/Brooklyn.json')
-    const yesterday = await axios.get('http://api.wunderground.com/api/a657cb9c1419658e/yesterday/q/NY/Brooklyn.json')
+    const today = await axios.get(`http://api.wunderground.com/api/${process.env.WEATHER_KEY}/forecast10day/q/NY/Brooklyn.json`)
+    const yesterday = await axios.get(`http://api.wunderground.com/api/${process.env.WEATHER_KEY}/yesterday/q/NY/Brooklyn.json`)
     const todayData = today.data.forecast.simpleforecast.forecastday[0]
     const yesterdayData = yesterday.data.history.dailysummary[0]
     return {

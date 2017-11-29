@@ -7,10 +7,8 @@ const { weather } = require('./requests/weather.js')
 const { parking } = require('./requests/parking.js')
 const { calendar } = require('./requests/calendar.js')
 const { yoga } = require('./requests/yoga.js')
-moment.tz.setDefault('America/New_York')
-
-var Redis = require('ioredis')
-var redis = new Redis(process.env.REDIS_URL)
+const Redis = require('ioredis')
+const redis = new Redis(process.env.REDIS_URL)
 
 const app = express()
 app.engine('mustache', mustacheExpress());
@@ -18,6 +16,8 @@ app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'dist')))
+
+moment.tz.setDefault('America/New_York')
 
 const asyncMiddleware = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next)
