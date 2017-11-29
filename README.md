@@ -4,6 +4,9 @@
 
 Edit power save mode: `xset dpms 0 0 7200; xset s 0 0`
 
+(currently running this by creating a new script in `~` and running script via `.bashrc` on login
+
+
 Install Chromium: `sudo apt-get install chromium-browser`
 
 Install xautomation: `sudo apt-get install xautomation`
