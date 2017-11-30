@@ -52,6 +52,8 @@ h1 {
     margin-bottom: 10px; }
   .weather .yesterday {
     margin-top: 0; }
+  .weather h1, .weather h3 {
+    display: inline-block; }
 
 .parking {
   background: white;
@@ -63,7 +65,7 @@ h1 {
 
 .waves p {
   margin: 2px 0; }
-  .waves p.cond-1 {
+  .waves p.good-conditions {
     background: linear-gradient(to right, #eee0, #11998e, #38ef7d); }
   .waves p:last-child {
     margin-bottom: 10px; }

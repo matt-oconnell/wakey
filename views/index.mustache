@@ -49,8 +49,11 @@
     </div>
     <!-- Weather -->
     <div class="weather">
-      <h1 class="temp">{{weather.today.low}}&deg; -&nbsp; {{weather.today.high}}&deg;</h1>
-      <h1 class="yesterday">Yesterday: {{weather.yesterday.low}}&deg; - {{weather.yesterday.high}}&deg;</h1>
+      <h3 class="yesterday">{{weather.yesterday.avg}}&deg;</h3>&nbsp;
+      <h1 class="temp">{{weather.today.avg}}&deg;</h1>&nbsp;
+      {{#weather.fourDays}}
+      <h3>{{avg}}&deg;</h3>&nbsp;
+      {{/weather.fourDays}}
       <!-- <p><i>{{weather.today.desc}}</i></p> -->
       <p>Rain: {{weather.today.chanceOfRain}}%</p>
     </div>
@@ -69,7 +72,7 @@
         <div class="day">
           <h5>{{day}}</h5>
           {{#data}}
-            <p class="cond-{{cond}}">{{hour}} &nbsp;
+            <p class="{{#goodConditions}}good-conditions{{/goodConditions}}">{{hour}} &nbsp;
               <span class="arrow arrow-bold arrow-{{windDirection}} arrow-condition-{{cond}}"> ></span>
               &nbsp; {{wind}} 
               <span class="right">

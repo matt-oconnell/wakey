@@ -77,6 +77,10 @@ h1 {
   .yesterday {
     margin-top: 0;
   }
+
+  h1, h3 {
+    display: inline-block;
+  }
 }
 
 .parking {
@@ -92,7 +96,7 @@ h1 {
   p {
     margin: 2px 0;
 
-    &.cond-1 {
+    &.good-conditions {
       background: linear-gradient(to right, #eee0, #11998e, #38ef7d);
     }
 
