@@ -10,7 +10,7 @@ module.exports = {
       access_token,
     })
     const options = {
-      tzid: 'Etc/UTC',
+      tzid: 'America/New_York',
       from: moment().format('YYYY-MM-DD'),
       to: moment().add(2, 'days').format('YYYY-MM-DD'),
       localized_times: true,
